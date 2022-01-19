@@ -1,0 +1,46 @@
+{
+  "name": "@graasp/utils",
+  "version": "1.0.0",
+  "repository": "git@github.com:graasp/graasp-utils.git",
+  "author": "Kim Lan Phan Hoang",
+  "license": "AGPL-3.0-only",
+  "main": "src/index.js",
+  "source": "src/index.ts",
+  "module": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "typescript": {
+    "definition": "dist/index.d.ts"
+  },
+  "scripts": {
+    "pre-commit": "yarn prettier:check && yarn lint",
+    "hooks:uninstall": "husky uninstall",
+    "hooks:install": "husky install",
+    "build": "tsc",
+    "test": "jest",
+    "test:watch": "yarn test --watchAll",
+    "lint": "eslint {src,test}",
+    "prettier:check": "prettier --check src/**/*.ts",
+    "prettier:write": "prettier --write src/**/*.ts",
+    "prepack": "yarn build",
+    "prepare": "yarn prepack && yarn hooks:install"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "16.0.1",
+    "@commitlint/config-conventional": "16.0.0",
+    "@types/eslint": "^8.2.1",
+    "@types/jest": "^27.4.0",
+    "@types/jsdom": "16.2.14",
+    "@typescript-eslint/eslint-plugin": "^5.9.0",
+    "@typescript-eslint/parser": "^5.9.0",
+    "eslint": "^8.6.0",
+    "eslint-config-prettier": "^8.3.0",
+    "husky": "7.0.4",
+    "jest": "^27.4.7",
+    "jsdom": "19.0.0",
+    "prettier": "2.5.1",
+    "ts-jest": "^27.1.2",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.3.5"
+  },
+  "packageManager": "yarn@3.2.0-rc.11"
+}
