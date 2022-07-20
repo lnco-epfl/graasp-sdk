@@ -1,5 +1,5 @@
 {
-  "name": "@graasp/utils",
+  "name": "@graasp/sdk",
   "version": "0.1.0",
   "repository": "git@github.com:graasp/graasp-utils.git",
   "author": "Kim Lan Phan Hoang",
@@ -28,11 +28,14 @@
   "devDependencies": {
     "@commitlint/cli": "16.0.1",
     "@commitlint/config-conventional": "16.0.0",
+    "@trivago/prettier-plugin-sort-imports": "3.2.0",
     "@types/eslint": "8.2.1",
     "@types/jest": "27.4.0",
     "@types/js-cookie": "3.0.2",
     "@types/jsdom": "16.2.14",
+    "@types/lodash.clonedeep": "4.5.7",
     "@types/qs": "6.9.7",
+    "@types/uuid": "8.3.4",
     "@typescript-eslint/eslint-plugin": "5.9.0",
     "@typescript-eslint/parser": "5.9.0",
     "eslint": "8.6.0",
@@ -47,7 +50,13 @@
   },
   "packageManager": "yarn@3.2.1",
   "dependencies": {
+    "@fastify/secure-session": "5.2.0",
+    "aws-sdk": "2.1111.0",
+    "fastify": "^3.29.1",
+    "fluent-json-schema": "3.1.0",
     "js-cookie": "3.0.1",
-    "qs": "6.10.3"
+    "qs": "6.11.0",
+    "slonik": "28.1.1",
+    "uuid": "8.3.2"
   }
 }
