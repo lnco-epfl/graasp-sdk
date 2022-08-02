@@ -1,6 +1,11 @@
-import { MOCK_HOST, MOCK_URL } from '../../test/fixtures';
+import { MOCK_HOST, MOCK_ITEM_ID, MOCK_URL } from '../../test/fixtures';
 import * as cookieUtils from './cookie';
-import { buildSignInPath, redirect, redirectToSavedUrl } from './navigation';
+import {
+  buildItemLink,
+  buildSignInPath,
+  redirect,
+  redirectToSavedUrl,
+} from './navigation';
 
 describe('Navigation Util Tests', () => {
   beforeEach(() => {
@@ -59,6 +64,26 @@ describe('Navigation Util Tests', () => {
     it('build sign in path', () => {
       const res = buildSignInPath({ host: MOCK_HOST });
       expect(res).toContain(MOCK_HOST);
+    });
+  });
+
+  describe('buildItemLink', () => {
+    it('build item path', () => {
+      const res = buildItemLink({ host: MOCK_HOST, itemId: MOCK_ITEM_ID });
+      expect(res).toContain(MOCK_HOST);
+      expect(res).toContain(MOCK_ITEM_ID);
+      expect(res).not.toContain('chat=open');
+    });
+
+    it('build item path with open path', () => {
+      const res = buildItemLink({
+        host: MOCK_HOST,
+        itemId: MOCK_ITEM_ID,
+        chatOpen: true,
+      });
+      expect(res).toContain(MOCK_HOST);
+      expect(res).toContain(MOCK_ITEM_ID);
+      expect(res).toContain('chat=open');
     });
   });
 });
