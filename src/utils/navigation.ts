@@ -48,4 +48,12 @@ export const buildSignInPath = ({ host }: { host: string }) => `${host}/signin`;
  * @param  {boolean} chatOpen whether to have the chat open
  * @returns {string} lint to item with chat open
  */
-export const buildItemLink = ({ host, itemId, chatOpen }: { host: string; itemId: string; chatOpen?: boolean }) => `${host}/${itemId}${chatOpen && '?chat=open'}`;
+export const buildItemLink = ({
+  host,
+  itemId,
+  chatOpen,
+}: {
+  host: string;
+  itemId: string;
+  chatOpen?: boolean;
+}) => `${host}/items/${itemId}${chatOpen && '?chat=open'}`;
