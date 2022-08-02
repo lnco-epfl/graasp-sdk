@@ -6,6 +6,7 @@ export enum ItemType {
   LOCAL_FILE = 'file',
   S3_FILE = 's3File',
   SHORTCUT = 'shortcut',
+  H5P = 'h5p',
 }
 
 export type FileItemType = ItemType.S3_FILE | ItemType.LOCAL_FILE;
