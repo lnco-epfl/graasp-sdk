@@ -1,7 +1,7 @@
 import { MOCK_HOST, MOCK_ITEM_ID, MOCK_URL } from '../../test/fixtures';
 import * as cookieUtils from './cookie';
 import {
-  buildItemLink,
+  buildItemLinkForBuilder,
   buildSignInPath,
   redirect,
   redirectToSavedUrl,
@@ -69,14 +69,14 @@ describe('Navigation Util Tests', () => {
 
   describe('buildItemLink', () => {
     it('build item path', () => {
-      const res = buildItemLink({ host: MOCK_HOST, itemId: MOCK_ITEM_ID });
+      const res = buildItemLinkForBuilder({ host: MOCK_HOST, itemId: MOCK_ITEM_ID });
       expect(res).toContain(MOCK_HOST);
       expect(res).toContain(MOCK_ITEM_ID);
       expect(res).not.toContain('chat=open');
     });
 
     it('build item path with open path', () => {
-      const res = buildItemLink({
+      const res = buildItemLinkForBuilder({
         host: MOCK_HOST,
         itemId: MOCK_ITEM_ID,
         chatOpen: true,
