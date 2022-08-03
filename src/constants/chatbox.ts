@@ -1,3 +1,3 @@
 export enum ChatStatus {
-  OPEN = 'open'
+  OPEN = 'open',
 }

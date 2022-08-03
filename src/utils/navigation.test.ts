@@ -69,19 +69,22 @@ describe('Navigation Util Tests', () => {
 
   describe('buildItemLink', () => {
     it('build item path', () => {
-      const res = buildItemLinkForBuilder({ host: MOCK_HOST, itemId: MOCK_ITEM_ID });
-      expect(res).toContain(MOCK_HOST);
+      const res = buildItemLinkForBuilder({
+        host: MOCK_URL,
+        itemId: MOCK_ITEM_ID,
+      });
+      expect(res).toContain(MOCK_URL);
       expect(res).toContain(MOCK_ITEM_ID);
       expect(res).not.toContain('chat=open');
     });
 
     it('build item path with open path', () => {
       const res = buildItemLinkForBuilder({
-        host: MOCK_HOST,
+        host: MOCK_URL,
         itemId: MOCK_ITEM_ID,
         chatOpen: true,
       });
-      expect(res).toContain(MOCK_HOST);
+      expect(res).toContain(MOCK_URL);
       expect(res).toContain(MOCK_ITEM_ID);
       expect(res).toContain('chat=open');
     });

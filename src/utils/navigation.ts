@@ -1,5 +1,5 @@
-import { getUrlForRedirection } from './cookie';
 import { ChatStatus } from '../constants';
+import { getUrlForRedirection } from './cookie';
 
 interface RedirectOptions {
   openInNewTab?: boolean;
@@ -60,9 +60,9 @@ export const buildItemLinkForBuilder = ({
 }) => {
   const baseUrl = new URL(`${host}/items/${itemId}`);
   const queryString = new URLSearchParams({
-  ...(chatOpen && {chat: ChatStatus.OPEN})
+    ...(chatOpen && { chat: ChatStatus.OPEN }),
   });
   // add params to url
   baseUrl.search = queryString.toString();
-  return baseUrl;
+  return baseUrl.toString();
 };
