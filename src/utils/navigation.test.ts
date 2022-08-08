@@ -67,18 +67,30 @@ describe('Navigation Util Tests', () => {
     });
   });
 
-  describe('buildItemLink', () => {
-    it('build item path', () => {
+  describe('buildItemLinkForBuilder', () => {
+    it('build item path without specifying chat status', () => {
       const res = buildItemLinkForBuilder({
         host: MOCK_URL,
         itemId: MOCK_ITEM_ID,
       });
       expect(res).toContain(MOCK_URL);
       expect(res).toContain(MOCK_ITEM_ID);
-      expect(res).not.toContain('chat=open');
+      expect(res).not.toContain('chat=');
     });
 
-    it('build item path with open path', () => {
+    it('build item path with chat closed', () => {
+      const res = buildItemLinkForBuilder({
+        host: MOCK_URL,
+        itemId: MOCK_ITEM_ID,
+        chatOpen: false,
+      });
+      expect(res).toContain(MOCK_URL);
+      expect(res).toContain(MOCK_ITEM_ID);
+      // query string should contain "chat=false" to have the chat closed
+      expect(res).toContain('chat=false');
+    });
+
+    it('build item path with chat open', () => {
       const res = buildItemLinkForBuilder({
         host: MOCK_URL,
         itemId: MOCK_ITEM_ID,
@@ -86,7 +98,8 @@ describe('Navigation Util Tests', () => {
       });
       expect(res).toContain(MOCK_URL);
       expect(res).toContain(MOCK_ITEM_ID);
-      expect(res).toContain('chat=open');
+      // query string should contain "chat=true" to have the chat open
+      expect(res).toContain('chat=true');
     });
   });
 });

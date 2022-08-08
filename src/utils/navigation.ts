@@ -1,4 +1,5 @@
-import { ChatStatus } from '../constants';
+import qs from 'qs';
+
 import { getUrlForRedirection } from './cookie';
 
 interface RedirectOptions {
@@ -47,7 +48,7 @@ export const buildSignInPath = ({ host }: { host: string }) => `${host}/signin`;
  * @param  {string} host target host
  * @param  {string} itemId id of the item
  * @param  {boolean} chatOpen whether to have the chat open
- * @returns {string} lint to item with chat open
+ * @returns {string} link to item with chat open
  */
 export const buildItemLinkForBuilder = ({
   host,
@@ -57,12 +58,8 @@ export const buildItemLinkForBuilder = ({
   host: string;
   itemId: string;
   chatOpen?: boolean;
-}) => {
-  const baseUrl = new URL(`${host}/items/${itemId}`);
-  const queryString = new URLSearchParams({
-    ...(chatOpen && { chat: ChatStatus.OPEN }),
-  });
-  // add params to url
-  baseUrl.search = queryString.toString();
-  return baseUrl.toString();
-};
+}) =>
+  `${host}/items/${itemId}${qs.stringify(
+    { chat: chatOpen },
+    { addQueryPrefix: true },
+  )}`;
