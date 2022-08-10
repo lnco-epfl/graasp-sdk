@@ -1,3 +1,5 @@
+import qs from 'qs';
+
 import { getUrlForRedirection } from './cookie';
 
 interface RedirectOptions {
@@ -5,7 +7,7 @@ interface RedirectOptions {
   name?: string;
 }
 /**
- * @param  {string} url link to redirec to
+ * @param  {string} url link to redirect to
  * @param  {RedirectOptions} options
  */
 export const redirect = (url: string, options?: RedirectOptions) => {
@@ -42,3 +44,22 @@ export const redirectToSavedUrl = (
  * @returns {string} sign in path
  */
 export const buildSignInPath = ({ host }: { host: string }) => `${host}/signin`;
+/**
+ * @param  {string} host target host
+ * @param  {string} itemId id of the item
+ * @param  {boolean} chatOpen whether to have the chat open
+ * @returns {string} link to item with chat open
+ */
+export const buildItemLinkForBuilder = ({
+  host,
+  itemId,
+  chatOpen,
+}: {
+  host: string;
+  itemId: string;
+  chatOpen?: boolean;
+}) =>
+  `${host}/items/${itemId}${qs.stringify(
+    { chat: chatOpen },
+    { addQueryPrefix: true },
+  )}`;

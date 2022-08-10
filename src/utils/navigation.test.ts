@@ -1,6 +1,11 @@
-import { MOCK_HOST, MOCK_URL } from '../../test/fixtures';
+import { MOCK_HOST, MOCK_ITEM_ID, MOCK_URL } from '../../test/fixtures';
 import * as cookieUtils from './cookie';
-import { buildSignInPath, redirect, redirectToSavedUrl } from './navigation';
+import {
+  buildItemLinkForBuilder,
+  buildSignInPath,
+  redirect,
+  redirectToSavedUrl,
+} from './navigation';
 
 describe('Navigation Util Tests', () => {
   beforeEach(() => {
@@ -59,6 +64,42 @@ describe('Navigation Util Tests', () => {
     it('build sign in path', () => {
       const res = buildSignInPath({ host: MOCK_HOST });
       expect(res).toContain(MOCK_HOST);
+    });
+  });
+
+  describe('buildItemLinkForBuilder', () => {
+    it('build item path without specifying chat status', () => {
+      const res = buildItemLinkForBuilder({
+        host: MOCK_URL,
+        itemId: MOCK_ITEM_ID,
+      });
+      expect(res).toContain(MOCK_URL);
+      expect(res).toContain(MOCK_ITEM_ID);
+      expect(res).not.toContain('chat=');
+    });
+
+    it('build item path with chat closed', () => {
+      const res = buildItemLinkForBuilder({
+        host: MOCK_URL,
+        itemId: MOCK_ITEM_ID,
+        chatOpen: false,
+      });
+      expect(res).toContain(MOCK_URL);
+      expect(res).toContain(MOCK_ITEM_ID);
+      // query string should contain "chat=false" to have the chat closed
+      expect(res).toContain('chat=false');
+    });
+
+    it('build item path with chat open', () => {
+      const res = buildItemLinkForBuilder({
+        host: MOCK_URL,
+        itemId: MOCK_ITEM_ID,
+        chatOpen: true,
+      });
+      expect(res).toContain(MOCK_URL);
+      expect(res).toContain(MOCK_ITEM_ID);
+      // query string should contain "chat=true" to have the chat open
+      expect(res).toContain('chat=true');
     });
   });
 });
