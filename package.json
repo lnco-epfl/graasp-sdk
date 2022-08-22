@@ -12,6 +12,9 @@
   "typescript": {
     "definition": "dist/index.d.ts"
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "pre-commit": "yarn prettier:check && yarn lint",
     "hooks:uninstall": "husky uninstall",
