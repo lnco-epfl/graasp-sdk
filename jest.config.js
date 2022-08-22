@@ -4,6 +4,7 @@ module.exports = {
       tsconfig: 'tsconfig.json',
     },
   },
+  transformIgnorePatterns: ['/node_modules/(?!@graasp/sdk)'],
   moduleFileExtensions: ['ts', 'js', 'json'],
   transform: {
     '^.+\\.(ts|tsx)$': 'ts-jest',

@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "name": "@graasp/sdk",
   "version": "0.1.0",
   "repository": "git@github.com:graasp/graasp-sdk.git",
@@ -29,8 +30,8 @@
     "prepare": "yarn prepack && yarn hooks:install"
   },
   "devDependencies": {
-    "@commitlint/cli": "16.0.1",
-    "@commitlint/config-conventional": "16.0.0",
+    "@commitlint/cli": "17.0.3",
+    "@commitlint/config-conventional": "17.0.3",
     "@trivago/prettier-plugin-sort-imports": "3.2.0",
     "@types/eslint": "8.2.1",
     "@types/jest": "27.4.0",
