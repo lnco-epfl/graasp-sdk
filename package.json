@@ -12,6 +12,9 @@
   "typescript": {
     "definition": "dist/index.d.ts"
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "pre-commit": "yarn prettier:check && yarn lint",
     "hooks:uninstall": "husky uninstall",
@@ -26,8 +29,8 @@
     "prepare": "yarn prepack && yarn hooks:install"
   },
   "devDependencies": {
-    "@commitlint/cli": "16.0.1",
-    "@commitlint/config-conventional": "16.0.0",
+    "@commitlint/cli": "17.0.3",
+    "@commitlint/config-conventional": "17.0.3",
     "@trivago/prettier-plugin-sort-imports": "3.2.0",
     "@types/eslint": "8.2.1",
     "@types/jest": "27.4.0",
