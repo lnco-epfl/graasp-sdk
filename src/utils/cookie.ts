@@ -16,11 +16,19 @@ export const COOKIE_KEYS = {
   REDIRECT_URL_KEY: 'redirectUrl',
   LANG_KEY: 'lang',
 };
+
 /**
  * @returns {boolean} whether the user accepted the cookies
  */
 export const hasAcceptedCookies = () =>
   Cookies.get(COOKIE_KEYS.ACCEPT_COOKIES_KEY) === 'true';
+
+// TODO: this function should change to rely on another cookie -> session will be httpOnly
+/**
+ * @returns {boolean} whether the user is authenticated
+ */
+export const isUserAuthenticated = () =>
+  Boolean(Cookies.get(COOKIE_KEYS.SESSION_KEY));
 
 /**
  * @param {string|null} token value to set in the session key. A null value will remove it.
