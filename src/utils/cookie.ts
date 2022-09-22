@@ -162,7 +162,7 @@ export const getLangCookie = () => Cookies.get(COOKIE_KEYS.LANG_KEY);
 export const setIframeResizeHeightCookie = (
   memberId: UUID,
   itemId: UUID,
-  height: Number,
+  height: string | number,
 ) =>
   Cookies.set(buildIframeResizeHeightKey(memberId, itemId), String(height), {
     expires: IFRAME_RESIZE_HEIGHT_COOKIE_EXPIRATION_DAYS,
