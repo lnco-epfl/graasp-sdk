@@ -24,6 +24,8 @@ export const COOKIE_KEYS = {
 
 /**
  * @returns {string} IframeResizeHeightCookie key
+ * @param {UUID} memeber id
+ * * @param {UUID} item id
  */
 const buildIframeResizeHeightKey = (memberId: UUID, itemId: UUID) =>
   `${COOKIE_KEYS.IFRAME_RESIZE_HEIGHT_KEY}-${memberId}-${itemId}`;
@@ -170,6 +172,8 @@ export const setIframeResizeHeightCookie = (
 
 /**
  * @returns  {string|undefined} iframe height
+ * @param {UUID} memeber id
+ * @param {UUID} item id
  */
 export const getIframeResizeHeightCookie = (memberId: UUID, itemId: UUID) =>
   Cookies.get(buildIframeResizeHeightKey(memberId, itemId));
