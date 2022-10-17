@@ -1,6 +1,10 @@
+import { UUID } from 'aws-sdk/clients/cloudtrail';
 import Cookies from 'js-cookie';
 
-import { SESSION_COOKIE_EXPIRATION_DURATION_MS } from '../constants/constants';
+import {
+  IFRAME_RESIZE_HEIGHT_COOKIE_EXPIRATION_DAYS,
+  SESSION_COOKIE_EXPIRATION_DURATION_MS,
+} from '../constants/constants';
 
 export interface Session {
   id: string;
@@ -15,7 +19,16 @@ export const COOKIE_KEYS = {
   STORED_SESSIONS_KEY: 'storedSessions',
   REDIRECT_URL_KEY: 'redirectUrl',
   LANG_KEY: 'lang',
+  IFRAME_RESIZE_HEIGHT_KEY: 'iframeResizeHeight',
 };
+
+/**
+ * @returns {string} IframeResizeHeightCookie key
+ * @param {UUID} memeber id
+ * * @param {UUID} item id
+ */
+const buildIframeResizeHeightKey = (memberId: UUID, itemId: UUID) =>
+  `${COOKIE_KEYS.IFRAME_RESIZE_HEIGHT_KEY}-${memberId}-${itemId}`;
 
 /**
  * @returns {boolean} whether the user accepted the cookies
@@ -142,3 +155,25 @@ export const setLangCookie = (lang: string, domain: string) =>
  * @returns  {string|undefined} user's lang
  */
 export const getLangCookie = () => Cookies.get(COOKIE_KEYS.LANG_KEY);
+
+/**
+ * @param  {string} memberId
+ * @param  {string} itemId
+ * @param  {number} variable height to set in the cookie
+ */
+export const setIframeResizeHeightCookie = (
+  memberId: UUID,
+  itemId: UUID,
+  height: string | number,
+) =>
+  Cookies.set(buildIframeResizeHeightKey(memberId, itemId), String(height), {
+    expires: IFRAME_RESIZE_HEIGHT_COOKIE_EXPIRATION_DAYS,
+  });
+
+/**
+ * @returns  {string|undefined} iframe height
+ * @param {UUID} memeber id
+ * @param {UUID} item id
+ */
+export const getIframeResizeHeightCookie = (memberId: UUID, itemId: UUID) =>
+  Cookies.get(buildIframeResizeHeightKey(memberId, itemId));
