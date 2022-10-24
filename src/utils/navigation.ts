@@ -1,11 +1,13 @@
 import qs from 'qs';
 
+import { DEFAULT_PROTOCOL } from '../config';
 import { getUrlForRedirection } from './cookie';
 
 interface RedirectOptions {
   openInNewTab?: boolean;
   name?: string;
 }
+
 /**
  * @param  {string} url link to redirect to
  * @param  {RedirectOptions} options
@@ -19,6 +21,7 @@ export const redirect = (url: string, options?: RedirectOptions) => {
     window.location.assign(url);
   }
 };
+
 /**
  * @param  {string} defaultLink link to redirect to if no url for redirection is defined
  * @param  {RedirectOptions} options
@@ -39,27 +42,32 @@ export const redirectToSavedUrl = (
 
   return false;
 };
+
 /**
  * @param  {string} host authentication host
  * @returns {string} sign in path
  */
 export const buildSignInPath = ({ host }: { host: string }) => `${host}/signin`;
+
 /**
+ * @param  {string} protocol target protocol to use (http, https ...)
  * @param  {string} host target host
  * @param  {string} itemId id of the item
  * @param  {boolean} chatOpen whether to have the chat open
  * @returns {string} link to item with chat open
  */
 export const buildItemLinkForBuilder = ({
+  protocol = DEFAULT_PROTOCOL,
   host,
   itemId,
   chatOpen,
 }: {
+  protocol?: string;
   host: string;
   itemId: string;
   chatOpen?: boolean;
 }) =>
-  `${host}/items/${itemId}${qs.stringify(
+  `${protocol}://${host}/items/${itemId}${qs.stringify(
     { chat: chatOpen },
     { addQueryPrefix: true },
   )}`;
