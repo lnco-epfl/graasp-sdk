@@ -1,4 +1,5 @@
 import { MOCK_HOST, MOCK_ITEM_ID, MOCK_URL } from '../../test/fixtures';
+import { DEFAULT_PROTOCOL } from '../config';
 import * as cookieUtils from './cookie';
 import {
   buildItemLinkForBuilder,
@@ -70,21 +71,21 @@ describe('Navigation Util Tests', () => {
   describe('buildItemLinkForBuilder', () => {
     it('build item path without specifying chat status', () => {
       const res = buildItemLinkForBuilder({
-        host: MOCK_URL,
+        host: MOCK_HOST,
         itemId: MOCK_ITEM_ID,
       });
-      expect(res).toContain(MOCK_URL);
+      expect(res).toContain(MOCK_HOST);
       expect(res).toContain(MOCK_ITEM_ID);
       expect(res).not.toContain('chat=');
     });
 
     it('build item path with chat closed', () => {
       const res = buildItemLinkForBuilder({
-        host: MOCK_URL,
+        host: MOCK_HOST,
         itemId: MOCK_ITEM_ID,
         chatOpen: false,
       });
-      expect(res).toContain(MOCK_URL);
+      expect(res).toContain(MOCK_HOST);
       expect(res).toContain(MOCK_ITEM_ID);
       // query string should contain "chat=false" to have the chat closed
       expect(res).toContain('chat=false');
@@ -92,14 +93,33 @@ describe('Navigation Util Tests', () => {
 
     it('build item path with chat open', () => {
       const res = buildItemLinkForBuilder({
-        host: MOCK_URL,
+        host: MOCK_HOST,
         itemId: MOCK_ITEM_ID,
         chatOpen: true,
       });
-      expect(res).toContain(MOCK_URL);
+      expect(res).toContain(MOCK_HOST);
       expect(res).toContain(MOCK_ITEM_ID);
       // query string should contain "chat=true" to have the chat open
       expect(res).toContain('chat=true');
+    });
+
+    it('build item path with protocol', () => {
+      const res = buildItemLinkForBuilder({
+        host: MOCK_HOST,
+        itemId: MOCK_ITEM_ID,
+      });
+      expect(res).toContain(DEFAULT_PROTOCOL);
+    });
+
+    it('build item path with special protocol', () => {
+      const specialProtocol = 'smb';
+      const res = buildItemLinkForBuilder({
+        protocol: specialProtocol,
+        host: MOCK_HOST,
+        itemId: MOCK_ITEM_ID,
+      });
+      expect(res).toContain(specialProtocol);
+      expect(res).not.toContain(DEFAULT_PROTOCOL);
     });
   });
 });
