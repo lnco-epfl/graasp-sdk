@@ -1,6 +1,6 @@
 import {
   MOCK_HOST,
-  MOCK_HOST_WITH_PROTO,
+  MOCK_HOST_WITH_PROTOCOL,
   MOCK_ITEM_ID,
   MOCK_URL,
 } from '../../test/fixtures';
@@ -129,10 +129,10 @@ describe('Navigation Util Tests', () => {
 
     it('build item path with host containing protocol', () => {
       const res = buildItemLinkForBuilder({
-        host: MOCK_HOST_WITH_PROTO,
+        host: MOCK_HOST_WITH_PROTOCOL,
         itemId: MOCK_ITEM_ID,
       });
-      expect(res).toContain(MOCK_HOST_WITH_PROTO);
+      expect(res).toContain(MOCK_HOST_WITH_PROTOCOL);
     });
   });
 
@@ -206,10 +206,10 @@ describe('Navigation Util Tests', () => {
 
     it('build item path with string origin', () => {
       const res = buildItemLinkForBuilder({
-        origin: MOCK_HOST_WITH_PROTO,
+        origin: MOCK_HOST_WITH_PROTOCOL,
         itemId: MOCK_ITEM_ID,
       });
-      expect(res).toContain(MOCK_HOST_WITH_PROTO);
+      expect(res).toContain(MOCK_HOST_WITH_PROTOCOL);
     });
   });
 });
