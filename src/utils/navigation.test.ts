@@ -1,4 +1,9 @@
-import { MOCK_HOST, MOCK_ITEM_ID, MOCK_URL } from '../../test/fixtures';
+import {
+  MOCK_HOST,
+  MOCK_HOST_WITH_PROTOCOL,
+  MOCK_ITEM_ID,
+  MOCK_URL,
+} from '../../test/fixtures';
 import { DEFAULT_PROTOCOL } from '../config';
 import * as cookieUtils from './cookie';
 import {
@@ -68,7 +73,7 @@ describe('Navigation Util Tests', () => {
     });
   });
 
-  describe('buildItemLinkForBuilder', () => {
+  describe('buildItemLinkForBuilder LEGACY', () => {
     it('build item path without specifying chat status', () => {
       const res = buildItemLinkForBuilder({
         host: MOCK_HOST,
@@ -120,6 +125,91 @@ describe('Navigation Util Tests', () => {
       });
       expect(res).toContain(specialProtocol);
       expect(res).not.toContain(DEFAULT_PROTOCOL);
+    });
+
+    it('build item path with host containing protocol', () => {
+      const res = buildItemLinkForBuilder({
+        host: MOCK_HOST_WITH_PROTOCOL,
+        itemId: MOCK_ITEM_ID,
+      });
+      expect(res).toContain(MOCK_HOST_WITH_PROTOCOL);
+    });
+  });
+
+  describe('buildItemLinkForBuilder', () => {
+    it('build item path without specifying chat status', () => {
+      const res = buildItemLinkForBuilder({
+        origin: {
+          hostName: MOCK_HOST,
+          protocol: DEFAULT_PROTOCOL,
+        },
+        itemId: MOCK_ITEM_ID,
+      });
+      expect(res).toContain(MOCK_HOST);
+      expect(res).toContain(MOCK_ITEM_ID);
+      expect(res).not.toContain('chat=');
+    });
+
+    it('build item path with chat closed', () => {
+      const res = buildItemLinkForBuilder({
+        origin: {
+          hostName: MOCK_HOST,
+          protocol: DEFAULT_PROTOCOL,
+        },
+        itemId: MOCK_ITEM_ID,
+        chatOpen: false,
+      });
+      expect(res).toContain(MOCK_HOST);
+      expect(res).toContain(MOCK_ITEM_ID);
+      // query string should contain "chat=false" to have the chat closed
+      expect(res).toContain('chat=false');
+    });
+
+    it('build item path with chat open', () => {
+      const res = buildItemLinkForBuilder({
+        origin: {
+          hostName: MOCK_HOST,
+          protocol: DEFAULT_PROTOCOL,
+        },
+        itemId: MOCK_ITEM_ID,
+        chatOpen: true,
+      });
+      expect(res).toContain(MOCK_HOST);
+      expect(res).toContain(MOCK_ITEM_ID);
+      // query string should contain "chat=true" to have the chat open
+      expect(res).toContain('chat=true');
+    });
+
+    it('build item path with protocol', () => {
+      const res = buildItemLinkForBuilder({
+        origin: {
+          hostName: MOCK_HOST,
+          protocol: DEFAULT_PROTOCOL,
+        },
+        itemId: MOCK_ITEM_ID,
+      });
+      expect(res).toContain(DEFAULT_PROTOCOL);
+    });
+
+    it('build item path with special protocol', () => {
+      const specialProtocol = 'smb';
+      const res = buildItemLinkForBuilder({
+        origin: {
+          hostName: MOCK_HOST,
+          protocol: specialProtocol,
+        },
+        itemId: MOCK_ITEM_ID,
+      });
+      expect(res).toContain(specialProtocol);
+      expect(res).not.toContain(DEFAULT_PROTOCOL);
+    });
+
+    it('build item path with string origin', () => {
+      const res = buildItemLinkForBuilder({
+        origin: MOCK_HOST_WITH_PROTOCOL,
+        itemId: MOCK_ITEM_ID,
+      });
+      expect(res).toContain(MOCK_HOST_WITH_PROTOCOL);
     });
   });
 });
