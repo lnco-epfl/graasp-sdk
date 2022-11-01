@@ -1,6 +1,6 @@
 import qs from 'qs';
 
-import { DEFAULT_PROTOCOL, PROTO_REGEX } from '../config';
+import { DEFAULT_PROTOCOL, PROTOCOL_REGEX } from '../config';
 import { getUrlForRedirection } from './cookie';
 
 interface RedirectOptions {
@@ -92,7 +92,7 @@ export const buildItemLinkForBuilder: BuildItemLinkFunc = (
   } else {
     // todo: LEGACY code, will be removed once the Old type is removed
     // check if the host contains the protocol
-    const hostIncludesProto = args.host.match(PROTO_REGEX);
+    const hostIncludesProto = args.host.match(PROTOCOL_REGEX);
     if (hostIncludesProto) {
       origin = args.host;
     } else {
