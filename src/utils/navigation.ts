@@ -1,6 +1,6 @@
 import qs from 'qs';
 
-import { DEFAULT_PROTOCOL } from '../config';
+import { DEFAULT_PROTOCOL, PROTO_REGEX } from '../config';
 import { getUrlForRedirection } from './cookie';
 
 interface RedirectOptions {
@@ -50,24 +50,58 @@ export const redirectToSavedUrl = (
 export const buildSignInPath = ({ host }: { host: string }) => `${host}/signin`;
 
 /**
- * @param  {string} protocol target protocol to use (http, https ...)
- * @param  {string} host target host
- * @param  {string} itemId id of the item
- * @param  {boolean} chatOpen whether to have the chat open
- * @returns {string} link to item with chat open
+ * @deprecated This definition will be removed, please use the new variant with the `origin` property instead.
  */
-export const buildItemLinkForBuilder = ({
-  protocol = DEFAULT_PROTOCOL,
-  host,
-  itemId,
-  chatOpen,
-}: {
+type OldBuildItemLinkParams = {
   protocol?: string;
   host: string;
   itemId: string;
   chatOpen?: boolean;
-}) =>
-  `${protocol}://${host}/items/${itemId}${qs.stringify(
+};
+
+/**
+ * @param {string | {hostName: string; protocol: string}} origin the full origin for the url (i.e. https://example.com)
+ * @param {string} itemId the id of the ite you would like to redirect to
+ * @param {boolean=} chatOpen whether to open the chat in the builder
+ */
+type BuildItemLinkParams = {
+  origin: string | { hostName: string; protocol?: string };
+  itemId: string;
+  chatOpen?: boolean;
+};
+interface BuildItemLinkFunc {
+  /** @deprecated
+   * Use { origin: string | { hostName: string; protocol: string }; itemId: string; chatOpen?: boolean; } object instead
+   * */
+  (args: OldBuildItemLinkParams): string;
+
+  (args: BuildItemLinkParams): string;
+}
+
+export const buildItemLinkForBuilder: BuildItemLinkFunc = (
+  args: BuildItemLinkParams | OldBuildItemLinkParams,
+): string => {
+  const { itemId, chatOpen } = args;
+  let origin;
+  if ('origin' in args) {
+    if (typeof args.origin === 'string') {
+      origin = args.origin;
+    } else {
+      origin = `${args.origin.protocol}://${args.origin.hostName}`;
+    }
+  } else {
+    // todo: LEGACY code, will be removed once the Old type is removed
+    // check if the host contains the protocol
+    const hostIncludesProto = args.host.match(PROTO_REGEX);
+    if (hostIncludesProto) {
+      origin = args.host;
+    } else {
+      origin = `${args.protocol || DEFAULT_PROTOCOL}://${args.host}`;
+    }
+  }
+
+  return `${origin}/items/${itemId}${qs.stringify(
     { chat: chatOpen },
     { addQueryPrefix: true },
   )}`;
+};
