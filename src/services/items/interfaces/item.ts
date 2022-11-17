@@ -3,8 +3,10 @@ import { Serializable, UnknownExtra } from '../../../interfaces/extra';
 
 export interface ItemSettings extends Serializable {
   isPinned?: boolean;
-  showChatBox?: boolean;
+  showChatbox?: boolean;
   hasThumbnail?: boolean;
+  isResizable?: boolean;
+  isCollapsible?: boolean;
 }
 
 export interface Item<T extends UnknownExtra = UnknownExtra, S = ItemSettings> {
