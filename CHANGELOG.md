@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.0](https://github.com/graasp/graasp-sdk/compare/v0.2.0...v0.3.0) (2023-01-26)
+
+
+### Features
+
+* add file size property ([932fdf4](https://github.com/graasp/graasp-sdk/commit/932fdf4183c6acdaee7333511a065b8a21766039))
+
 ## [0.2.0](https://github.com/graasp/graasp-sdk/compare/v0.1.0...v0.2.0) (2023-01-06)
 
 
