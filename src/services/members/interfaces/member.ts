@@ -17,4 +17,6 @@ export interface Member<E extends UnknownExtra = UnknownExtra> extends Actor {
 
 export interface MemberExtra extends UnknownExtra {
   hasAvatar?: boolean;
+  favoriteItems?: string[];
+  lang?: string;
 }

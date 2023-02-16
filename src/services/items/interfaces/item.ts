@@ -1,5 +1,15 @@
 import { ItemType } from '../../../constants/itemType';
-import { Serializable, UnknownExtra } from '../../../interfaces/extra';
+import {
+  DocumentItemExtra,
+  EmbeddedLinkItemExtra,
+  FolderItemExtra,
+  Serializable,
+  ShortcutItemExtra,
+} from '../../../interfaces/extra';
+import { AppItemExtra } from '../../app/';
+import { Etherpad } from '../../etherpad';
+import { LocalFileItemExtra, S3FileItemExtra } from '../../file';
+import { H5PExtra } from '../../h5p';
 
 export interface ItemSettings extends Serializable {
   isPinned?: boolean;
@@ -9,15 +19,61 @@ export interface ItemSettings extends Serializable {
   isCollapsible?: boolean;
 }
 
-export interface Item<T extends UnknownExtra = UnknownExtra, S = ItemSettings> {
+export type ItemBase<S = ItemSettings> = {
   id: string;
   name: string;
   description: string;
-  type: ItemType;
   path: string;
-  extra: T;
   settings: S;
   creator: string;
   createdAt: string;
   updatedAt: string;
-}
+};
+
+export type AppItemType<S = ItemSettings> = {
+  type: `${ItemType.APP}`;
+  extra: AppItemExtra;
+} & ItemBase<S>;
+export type DocumentItemType<S = ItemSettings> = {
+  type: `${ItemType.DOCUMENT}`;
+  extra: DocumentItemExtra;
+} & ItemBase<S>;
+export type FolderItemType<S = ItemSettings> = {
+  type: `${ItemType.FOLDER}`;
+  extra: FolderItemExtra;
+} & ItemBase<S>;
+export type H5PItemType<S = ItemSettings> = {
+  type: `${ItemType.H5P}`;
+  extra: H5PExtra;
+} & ItemBase<S>;
+export type EmbeddedLinkItemType<S = ItemSettings> = {
+  type: `${ItemType.LINK}`;
+  extra: EmbeddedLinkItemExtra;
+} & ItemBase<S>;
+export type LocalFileItemType<S = ItemSettings> = {
+  type: `${ItemType.LOCAL_FILE}`;
+  extra: LocalFileItemExtra;
+} & ItemBase<S>;
+export type S3FileItemType<S = ItemSettings> = {
+  type: `${ItemType.S3_FILE}`;
+  extra: S3FileItemExtra;
+} & ItemBase<S>;
+export type ShortcutItemType<S = ItemSettings> = {
+  type: `${ItemType.SHORTCUT}`;
+  extra: ShortcutItemExtra;
+} & ItemBase<S>;
+export type EtherpadItemType<S = ItemSettings> = {
+  type: `${ItemType.ETHERPAD}`;
+  extra: Etherpad;
+} & ItemBase<S>;
+
+export type Item<S = ItemSettings> =
+  | AppItemType<S>
+  | DocumentItemType<S>
+  | FolderItemType<S>
+  | H5PItemType<S>
+  | EmbeddedLinkItemType<S>
+  | LocalFileItemType<S>
+  | S3FileItemType<S>
+  | ShortcutItemType<S>
+  | EtherpadItemType<S>;

@@ -1,19 +1,23 @@
 {
   "compilerOptions": {
     "target": "es6",
-    "module": "commonjs",
+    "module": "CommonJS",
     "outDir": "dist",
     "esModuleInterop": true,
     "skipLibCheck": true,
     "declaration": true,
     "declarationDir": "dist",
-    "moduleResolution": "node",
+    "moduleResolution": "node16",
     "strict": true,
     "isolatedModules": true,
     "noImplicitThis": true,
     "noImplicitAny": true,
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["./*"]
+    }
   },
   "include": ["src/**/*"],
-  "exclude": [ "test", "src/**/*.test.ts"]
+  "exclude": ["test", "src/**/*.test.ts"]
 }
