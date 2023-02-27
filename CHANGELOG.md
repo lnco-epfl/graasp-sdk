@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0](https://github.com/graasp/graasp-sdk/compare/v0.4.1...v0.5.0) (2023-02-27)
+
+
+### Features
+
+* release new version ([7e7427f](https://github.com/graasp/graasp-sdk/commit/7e7427f219f5f21f92d085f32778fc99d4804f05))
+
 ## [0.4.1](https://github.com/graasp/graasp-sdk/compare/v0.4.0...v0.4.1) (2023-02-16)
 
 
