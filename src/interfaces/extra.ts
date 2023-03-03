@@ -17,8 +17,22 @@ export interface Serializable {
   [key: string]: Anything;
 }
 
+/**
+ * Document style flavor defined according to severity prop of
+ * https://mui.com/material-ui/react-alert/
+ * Note: ordering matters (flavors list is generated from this enum)
+ */
+export enum DocumentItemExtraFlavor {
+  Info = 'info',
+  Success = 'success',
+  Warning = 'warning',
+  Error = 'error',
+}
+
 export type DocumentItemExtraProperties = {
   content: string;
+  /** Style flavor of the document's surrounding box */
+  flavor?: DocumentItemExtraFlavor | `${DocumentItemExtraFlavor}`;
 };
 
 export interface DocumentItemExtra extends UnknownExtra {
