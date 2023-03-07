@@ -19,4 +19,5 @@ export interface MemberExtra extends UnknownExtra {
   hasAvatar?: boolean;
   favoriteItems?: string[];
   lang?: string;
+  enableSaveActions?: boolean;
 }
