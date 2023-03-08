@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.0](https://github.com/graasp/graasp-sdk/compare/v0.6.0...v0.7.0) (2023-03-08)
+
+
+### Features
+
+* add enableSaveActions property ([e86b7df](https://github.com/graasp/graasp-sdk/commit/e86b7df79b2eb17db629989f3d7e96262aa6915b))
+
 ## [0.6.0](https://github.com/graasp/graasp-sdk/compare/v0.5.0...v0.6.0) (2023-03-03)
 
 
