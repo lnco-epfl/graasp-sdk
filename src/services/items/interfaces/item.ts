@@ -17,6 +17,7 @@ export interface ItemSettings extends Serializable {
   hasThumbnail?: boolean;
   isResizable?: boolean;
   isCollapsible?: boolean;
+  enableSaveActions?: boolean;
 }
 
 export type ItemBase<S = ItemSettings> = {
