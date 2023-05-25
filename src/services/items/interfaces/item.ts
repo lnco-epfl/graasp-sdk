@@ -3,16 +3,15 @@ import {
   DocumentItemExtra,
   EmbeddedLinkItemExtra,
   FolderItemExtra,
-  Serializable,
   ShortcutItemExtra,
-  UnknownExtra,
 } from '../../../interfaces/extra';
 import { AppItemExtra } from '../../app/';
 import { EtherpadItemExtra } from '../../etherpad';
 import { LocalFileItemExtra, S3FileItemExtra } from '../../file';
 import { H5PItemExtra } from '../../h5p';
+import { CCLicenseAdaptions, Member, OldCCLicenseAdaptations } from '@/index';
 
-export interface ItemSettings extends Serializable {
+export interface ItemSettings {
   lang?: string;
   isPinned?: boolean;
   showChatbox?: boolean;
@@ -20,6 +19,12 @@ export interface ItemSettings extends Serializable {
   isResizable?: boolean;
   isCollapsible?: boolean;
   enableSaveActions?: boolean;
+  tags?: string[];
+  ccLicenseAdaption?:
+    | `${CCLicenseAdaptions}`
+    | CCLicenseAdaptions
+    // todo: these are the old licenses, we might remove them at some point.
+    | `${OldCCLicenseAdaptations}`;
 }
 
 export interface EmbeddedLinkItemSettings extends ItemSettings {
@@ -27,17 +32,15 @@ export interface EmbeddedLinkItemSettings extends ItemSettings {
   showLinkButton?: boolean;
 }
 
-export interface Item<E = UnknownExtra, S = ItemSettings> {
+export interface Item<S = ItemSettings> {
   id: string;
   name: string;
   description: string;
   path: string;
   settings: S;
-  type: ItemType | `${ItemType}`;
-  extra: E;
-  creator: string;
-  createdAt: string;
-  updatedAt: string;
+  creator: Member | null;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
 export type AppItemType<S = ItemSettings> = {

@@ -1,6 +1,19 @@
+import { Item, Member } from '../index';
 import { UUID } from '@/types';
 
-export type Flag = {
+export type ItemFlag = {
   id: UUID;
-  name: string;
+  type: `${FlagType}` | FlagType;
+  item: Item;
+  creator: Member;
+  createdAt: Date;
 };
+
+export enum FlagType {
+  InappropriateContent = 'inappropriate-content',
+  HateSpeech = 'hate-speech',
+  FraudPlagiarism = 'fraud-plagiarism',
+  Spam = 'spam',
+  TargetedHarassment = 'targeted-harassment',
+  FalseInformation = 'false-information',
+}

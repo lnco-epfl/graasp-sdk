@@ -1,11 +1,7 @@
 export enum Context {
-  BUILDER = 'builder',
-  PLAYER = 'player',
-  LIBRARY = 'library',
-  ANALYTICS = 'analytics',
-
-  /** @deprecated */
-  EXPLORER = 'explorer',
-  /** @deprecated */
-  ANALYZER = 'analyzer',
+  Builder = 'builder',
+  Player = 'player',
+  Library = 'library',
+  Analytics = 'analytics',
+  Unknown = 'unknown',
 }

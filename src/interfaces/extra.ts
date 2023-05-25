@@ -1,20 +1,7 @@
 import { ItemType } from '../constants';
 
-export declare type Anything =
-  | string
-  | number
-  | boolean
-  | null
-  | undefined
-  | Anything[]
-  | {
-      [key: string]: Anything;
-    };
 export interface UnknownExtra {
-  [key: string]: Anything;
-}
-export interface Serializable {
-  [key: string]: Anything;
+  [key: string]: unknown;
 }
 
 /**
@@ -40,10 +27,10 @@ export interface DocumentItemExtra extends UnknownExtra {
 }
 
 export type EmbeddedLinkItemExtraProperties = {
-  thumbnails: string[];
-  html: string;
+  thumbnails?: string[];
+  html?: string;
   url: string;
-  icons: string[];
+  icons?: string[];
 };
 
 export interface EmbeddedLinkItemExtra extends UnknownExtra {
@@ -52,6 +39,7 @@ export interface EmbeddedLinkItemExtra extends UnknownExtra {
 
 export type FolderItemExtraProperties = {
   childrenOrder: string[];
+  isRoot?: boolean;
 };
 
 export interface FolderItemExtra extends UnknownExtra {

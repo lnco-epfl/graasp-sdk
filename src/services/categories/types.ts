@@ -1,14 +1,13 @@
+import { Item, Member } from '../index';
 import { UUID } from '@/types';
 
-/**
- * Higher order categories for `Categories`.
- * For example: "discipline", "education level", "language"
- *
- */
-export type CategoryType = {
-  id: UUID;
-  name: string;
-};
+// TODO: translate? use keys? <<<- have a table ??? change for admin
+export enum CategoryType {
+  Level = 'level',
+  Discipline = 'discipline',
+  Language = 'language',
+  Type = 'type',
+}
 
 /**
  * `Category` represents a sort of "tag" for items.
@@ -18,13 +17,13 @@ export type CategoryType = {
 export type Category = {
   id: UUID;
   name: string;
-  type: UUID;
+  type: `${CategoryType}` | CategoryType;
 };
 
 export type ItemCategory = {
   id: UUID;
-  itemId: UUID;
-  categoryId: UUID;
-  createdAt: string;
-  creator: string;
+  item: Item;
+  category: Category;
+  createdAt: Date;
+  creator: Member;
 };

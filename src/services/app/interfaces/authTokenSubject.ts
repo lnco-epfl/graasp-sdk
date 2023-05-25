@@ -1,9 +1,11 @@
+import { Item, Member } from '@/services';
+
 export interface AppIdentification {
-  app: string;
+  key: string;
 }
 
 export type AuthTokenSubject = {
-  member: string;
-  item: string;
+  memberId?: Member['id'];
+  itemId: Item['id'];
   origin: string;
 } & AppIdentification; // from the graasp client/app wrapper // from the app itself

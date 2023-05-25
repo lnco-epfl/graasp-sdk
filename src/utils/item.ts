@@ -1,4 +1,4 @@
-import { Item } from '../services';
+import { Item } from '@/index';
 
 /**
  * @param ids consecutive item ids
@@ -45,7 +45,17 @@ export const isChildOf = (path: string, parentPath: string) => {
 };
 
 /**
+ * Assert whether a given item is a descendant of a parent item
+ * @param path path of the item under test
+ * @param parentPath path of the parent item
+ * @returns whether the item is bellow the parent in the tree (any depth level)
+ */
+export const isDescendantOf = (path: string, parentPath: string) =>
+  path.startsWith(parentPath);
+
+// TODO
+/**
  * @param  {Item} item
  * @returns whether the item is a root
  */
-export const isRootItem = ({ path }: Item) => path.includes('.');
+export const isRootItem = ({ path }: Pick<Item, 'path'>) => !path.includes('.');

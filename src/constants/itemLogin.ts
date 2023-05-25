@@ -1,4 +1,7 @@
-export enum ItemLoginSchema {
-  USERNAME = 'username',
-  USERNAME_AND_PASSWORD = 'username+password',
+export enum ItemLoginSchemaType {
+  Username = 'username',
+  UsernameAndPassword = 'username+password',
+  // TODO: not fully implemented
+  Anonymous = 'anonymous',
+  AnonymousAndPassword = 'anonymous+password',
 }
