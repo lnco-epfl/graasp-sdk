@@ -11,6 +11,7 @@ export interface MemberExtra {
   lang?: string;
   enableSaveActions?: boolean;
   emailFreq?: `${EmailFrequency}` | EmailFrequency;
+  hasCompletedTour?: boolean;
 }
 
 export interface Member {
