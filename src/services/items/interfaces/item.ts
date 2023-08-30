@@ -9,29 +9,9 @@ import { AppItemExtra } from '../../app/';
 import { EtherpadItemExtra } from '../../etherpad';
 import { LocalFileItemExtra, S3FileItemExtra } from '../../file';
 import { H5PItemExtra } from '../../h5p';
-import { CCLicenseAdaptions, Member, OldCCLicenseAdaptations } from '@/index';
-
-export interface ItemSettings {
-  lang?: string;
-  isPinned?: boolean;
-  showChatbox?: boolean;
-  hasThumbnail?: boolean;
-  isResizable?: boolean;
-  isCollapsible?: boolean;
-  enableSaveActions?: boolean;
-  tags?: string[];
-  displayCoEditors?: boolean;
-  ccLicenseAdaption?:
-    | `${CCLicenseAdaptions}`
-    | CCLicenseAdaptions
-    // todo: these are the old licenses, we might remove them at some point.
-    | `${OldCCLicenseAdaptations}`;
-}
-
-export interface EmbeddedLinkItemSettings extends ItemSettings {
-  showLinkIframe?: boolean;
-  showLinkButton?: boolean;
-}
+import { EmbeddedLinkItemSettings, ItemSettings } from './itemSettings';
+import { Member } from '@/index';
+import { FileItemSettings } from '@/services/file/interfaces/settings';
 
 export interface Item<S = ItemSettings> {
   id: string;
@@ -65,14 +45,14 @@ export type EmbeddedLinkItemType<S = ItemSettings> = {
   extra: EmbeddedLinkItemExtra;
   settings: EmbeddedLinkItemSettings;
 } & Item<S>;
-export type LocalFileItemType<S = ItemSettings> = {
+export type LocalFileItemType = {
   type: `${ItemType.LOCAL_FILE}`;
   extra: LocalFileItemExtra;
-} & Item<S>;
-export type S3FileItemType<S = ItemSettings> = {
+} & Item<FileItemSettings>;
+export type S3FileItemType = {
   type: `${ItemType.S3_FILE}`;
   extra: S3FileItemExtra;
-} & Item<S>;
+} & Item<FileItemSettings>;
 export type ShortcutItemType<S = ItemSettings> = {
   type: `${ItemType.SHORTCUT}`;
   extra: ShortcutItemExtra;
@@ -88,7 +68,7 @@ export type DiscriminatedItem<S = ItemSettings> =
   | FolderItemType<S>
   | H5PItemType<S>
   | EmbeddedLinkItemType<S>
-  | LocalFileItemType<S>
-  | S3FileItemType<S>
+  | LocalFileItemType
+  | S3FileItemType
   | ShortcutItemType<S>
   | EtherpadItemType<S>;
