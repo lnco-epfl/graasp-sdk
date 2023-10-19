@@ -6,4 +6,5 @@ export interface ItemPublished {
   creator?: Member;
   createdAt: Date;
   item: Item;
+  totalViews: number;
 }
