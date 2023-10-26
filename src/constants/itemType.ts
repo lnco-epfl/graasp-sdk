@@ -10,4 +10,4 @@ export enum ItemType {
   ETHERPAD = 'etherpad',
 }
 
-export type FileItemType = ItemType.S3_FILE | ItemType.LOCAL_FILE;
+export type FileItemType = typeof ItemType.S3_FILE | typeof ItemType.LOCAL_FILE;

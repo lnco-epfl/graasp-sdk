@@ -1,12 +1,13 @@
-import { Item, Member } from '@/services';
+import { DiscriminatedItem, Member } from '@/services';
 import { UUID } from '@/types';
 
-export type AppSetting = {
+type Data = { [key: string]: unknown };
+export type AppSetting<T extends Data = Data> = {
   id: UUID;
-  item: Item;
+  item: DiscriminatedItem;
   creator?: Member | null;
   name: string;
-  data: { [key: string]: unknown };
+  data: T;
   createdAt: Date;
   updatedAt: Date;
 };
