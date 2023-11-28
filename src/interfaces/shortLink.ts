@@ -16,12 +16,18 @@ export type ShortLink = {
   createdAt: string;
 };
 
-export type ShortLinkPostPayload = Omit<ShortLink, 'createdAt'>;
-export type ShortLinkPatchPayload = AnyOfExcept<
-  ShortLink,
-  'createdAt' | 'item'
->;
-export type ShortLinkPutPayload = Omit<ShortLink, 'createdAt' | 'item'>;
+export type ShortLinkItemId = {
+  itemId: string;
+};
+
+export type ShortLinkPayload = Omit<ShortLink, 'createdAt' | 'item'> &
+  ShortLinkItemId;
+export type ShortLinkPostPayload = ShortLinkPayload;
+export type ShortLinkPatchPayload = AnyOfExcept<ShortLinkPostPayload, 'itemId'>;
+export type ShortLinkPutPayload = Omit<ShortLinkPayload, 'itemId'>;
+export type ShortLinkAvailable = {
+  available: boolean;
+};
 
 export class ClientHostManager {
   private static INSTANCE: ClientHostManager | null;
@@ -91,10 +97,14 @@ export class ClientHostManager {
     return { host: new URL(host), prefix };
   }
 
-  public getItemLink(context: Context, itemId: string) {
+  public getItemAsURL(context: Context, itemId: string) {
     const host = this.getHost(context);
     const prefix = this.getPrefix(context);
     const url = new URL(`${prefix}/${itemId}`, host.origin);
     return url;
+  }
+
+  public getItemLink(context: Context, itemId: string) {
+    return this.getItemAsURL(context, itemId).toString();
   }
 }
