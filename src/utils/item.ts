@@ -1,4 +1,4 @@
-import { Item } from '@/index';
+import { DiscriminatedItem } from '@/index';
 
 /**
  * @param ids consecutive item ids
@@ -53,9 +53,37 @@ export const isChildOf = (path: string, parentPath: string) => {
 export const isDescendantOf = (path: string, parentPath: string) =>
   path.startsWith(parentPath);
 
-// TODO
 /**
  * @param  {Item} item
  * @returns whether the item is a root
  */
-export const isRootItem = ({ path }: Pick<Item, 'path'>) => !path.includes('.');
+export const isRootItem = ({ path }: Pick<DiscriminatedItem, 'path'>) =>
+  !path.includes('.');
+
+/**
+ * Sort children given order array
+ * @param  {Item[]} children children to be sorted
+ * @param  {string[]} idsOrder non-exhaustive ids in order
+ * @returns array of ordered children
+ */
+export const sortChildrenWith = (
+  children: DiscriminatedItem[],
+  idsOrder: string[],
+) => {
+  const compareFn = (stElem: DiscriminatedItem, ndElem: DiscriminatedItem) => {
+    if (idsOrder.indexOf(stElem.id) >= 0 && idsOrder.indexOf(ndElem.id) >= 0) {
+      return idsOrder.indexOf(stElem.id) - idsOrder.indexOf(ndElem.id);
+    }
+    if (idsOrder.indexOf(stElem.id) >= 0) {
+      return -1;
+    }
+
+    if (idsOrder.indexOf(ndElem.id) >= 0) {
+      return 1;
+    }
+
+    return stElem.createdAt < ndElem.createdAt ? -1 : 1;
+  };
+
+  return children.toSorted(compareFn);
+};
