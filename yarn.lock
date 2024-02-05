@@ -560,12 +560,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@faker-js/faker@npm:8.4.0":
+  version: 8.4.0
+  resolution: "@faker-js/faker@npm:8.4.0"
+  checksum: 10c0/2dd9a3f6a38a70baa8d8ae222d9d371eea2b56eba4bd12bb138230e9481687686330fddee7581d3f285cf8ea8fe1534e08e43a110de8743e561a6eccc3fdc670
+  languageName: node
+  linkType: hard
+
 "@graasp/sdk@workspace:.":
   version: 0.0.0-use.local
   resolution: "@graasp/sdk@workspace:."
   dependencies:
     "@commitlint/cli": "npm:18.6.0"
     "@commitlint/config-conventional": "npm:18.6.0"
+    "@faker-js/faker": "npm:8.4.0"
     "@trivago/prettier-plugin-sort-imports": "npm:4.3.0"
     "@types/eslint": "npm:8.56.2"
     "@types/js-cookie": "npm:3.0.6"
