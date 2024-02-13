@@ -7,6 +7,7 @@ export type ItemGeolocation = {
   lng: number;
   item: DiscriminatedItem;
   country: string | null;
+  addressLabel: string | null;
   createdAt: string;
   updatedAt: string;
 };
