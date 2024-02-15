@@ -1,6 +1,5 @@
 import { describe, expect, it } from 'vitest';
 
-import { MemberFactory } from '../members/memberFactory';
 import {
   AppItemFactory,
   DocumentItemFactory,
@@ -11,7 +10,8 @@ import {
   LocalFileItemFactory,
   S3FileItemFactory,
   ShortcutItemFactory,
-} from './itemFactory';
+} from '.';
+import { MemberFactory } from '../members/memberFactory';
 import { ItemType } from '@/constants';
 
 describe('ItemFactor General', () => {

@@ -16,12 +16,11 @@ export default (): UserConfigExport => {
     build: {
       lib: {
         // Could also be a dictionary or array of multiple entry points
-        entry: [
-          resolve(__dirname, 'src/index.ts'),
-          resolve(__dirname, 'src/factories.ts'),
-        ],
+        entry: resolve(__dirname, 'src/index.ts'),
         name: 'graasp-sdk',
         formats: ['cjs', 'es'],
+        // the proper extensions will be added
+        fileName: 'index',
       },
       rollupOptions: {
         // make sure to externalize deps that shouldn't be bundled
