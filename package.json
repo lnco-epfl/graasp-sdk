@@ -26,7 +26,7 @@
     "check": "yarn prettier:check && yarn lint && yarn type-check",
     "pre-commit": "yarn check",
     "prepack": "yarn build",
-    "prepare": "yarn prepack && yarn hooks:install",
+    "prepare": "yarn prepack && yarn hooks",
     "hooks": "husky"
   },
   "dependencies": {
