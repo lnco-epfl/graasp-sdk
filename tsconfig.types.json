@@ -1,9 +1,11 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "./dist",
+    "outDir": "./types",
     "noEmit": false,
+    // only emit declarations
     "declaration": true,
+    "emitDeclarationOnly": true,
     "target": "ES2015",
     "module": "NodeNext",
     "moduleResolution": "NodeNext"
