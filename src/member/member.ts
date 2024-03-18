@@ -9,6 +9,17 @@ export type MemberStorage = {
   maximum: number;
 };
 
+export type PublicProfile = {
+  id: UUID;
+  member: Member;
+  bio: string;
+  facebookID: string;
+  linkedinID: string;
+  twitterID: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
 export enum MemberType {
   Individual = 'individual',
   Group = 'group',
