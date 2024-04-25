@@ -163,6 +163,7 @@ export * from './item/shortcutItem/shortcutItem.factory.js';
  * Item Bookmark
  */
 export * from './itemBookmark/itemBookmark.js';
+export * from './itemBookmark/itemBookmark.factory.js';
 
 /**
  * Item Flag
@@ -198,6 +199,7 @@ export * from './itemPublished/itemPublished.js';
  * Item Recycled
  */
 export * from './itemRecycled/itemRecycled.js';
+export * from './itemRecycled/itemRecycled.factory.js';
 
 /**
  * Item Tag
