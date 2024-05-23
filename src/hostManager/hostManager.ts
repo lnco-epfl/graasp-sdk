@@ -68,14 +68,27 @@ export class ClientHostManager {
     return { host: new URL(host), prefix };
   }
 
-  public getItemAsURL(context: Context, itemId: string) {
+  public getItemAsURL(
+    context: Context,
+    itemId: string,
+    qs: { [key: string]: string | number | boolean } = {},
+  ) {
     const host = this.getHost(context);
     const prefix = this.getPrefix(context);
     const url = new URL(`${prefix}/${itemId}`, host.origin);
+
+    for (const [k, v] of Object.entries(qs)) {
+      url.searchParams.set(k, v.toString());
+    }
+
     return url;
   }
 
-  public getItemLink(context: Context, itemId: string) {
-    return this.getItemAsURL(context, itemId).toString();
+  public getItemLink(
+    context: Context,
+    itemId: string,
+    qs?: { [key: string]: string | number | boolean },
+  ) {
+    return this.getItemAsURL(context, itemId, qs).toString();
   }
 }
