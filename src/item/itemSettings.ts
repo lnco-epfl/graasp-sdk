@@ -5,7 +5,7 @@ import {
 import { DescriptionPlacementType } from '@/enums/descriptionPlacement.js';
 import { Nullable } from '@/typeUtils.js';
 
-export interface ItemSettings {
+export type ItemSettings = {
   /** @deprecated use item.lang */
   lang?: string;
   isPinned?: boolean;
@@ -24,4 +24,4 @@ export interface ItemSettings {
     | `${OldCCLicenseAdaptations}`
   >;
   descriptionPlacement?: DescriptionPlacementType;
-}
+};
