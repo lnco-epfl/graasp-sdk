@@ -47,6 +47,20 @@ export const getLinkExtra = <U extends LinkItemExtra>(
   extra: U,
 ): U[typeof ItemType.LINK] => extra[ItemType.LINK];
 
+/**
+ * Returns url for a link given its extra
+ * Prioritize icons for small size
+ * @param {LinkItemExtra} extra
+ * @param {ThumbnailSizeType} [size=ThumbnailSize.Medium] size
+ * @returns url if exists, undefined otherwise
+ */
+export const getLinkThumbnailUrl = (
+  extra: LinkItemExtra,
+): string | undefined => {
+  const { thumbnails, icons } = getLinkExtra(extra);
+  return thumbnails?.[0] ?? icons?.[0];
+};
+
 export const buildLinkExtra = (
   extra: LinkItemExtraProperties,
 ): LinkItemExtra => ({
