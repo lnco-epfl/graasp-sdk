@@ -3,7 +3,6 @@
   "compilerOptions": {
     "outDir": "./esm",
     "noEmit": false,
-    // declarations are emitted separately
     "declaration": true,
     "target": "ES2015",
     "module": "NodeNext",
