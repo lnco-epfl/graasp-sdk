@@ -21,6 +21,9 @@ const Audio = {
   MP3: 'audio/mp3',
   WAV: 'audio/wav',
   WAV_Chrome: 'audio/x-wav',
+  MP4: 'audio/mp4',
+  // this is the mimetype of audio files created in macOS, basically an audio file in an MPEG-4 container
+  MP4_Apple: 'audio/x-m4a',
 };
 
 const PDF = 'application/pdf';
