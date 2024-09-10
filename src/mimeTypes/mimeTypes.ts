@@ -20,11 +20,15 @@ const Audio = {
   MPEG: 'audio/mpeg',
   MP3: 'audio/mp3',
   AAC: 'audio/aac',
+  AAC_Adts: 'audio/vnd.dlna.adts',
   WAV: 'audio/wav',
   WAV_Chrome: 'audio/x-wav',
   MP4: 'audio/mp4',
   // this is the mimetype of audio files created in macOS, basically an audio file in an MPEG-4 container
   MP4_Apple: 'audio/x-m4a',
+  OGG: 'audio/ogg',
+  FLAC: 'audio/flac',
+  FLAC_Chrome: 'audio/x-flac',
 };
 
 const PDF = 'application/pdf';
