@@ -19,6 +19,7 @@ const Video = {
 const Audio = {
   MPEG: 'audio/mpeg',
   MP3: 'audio/mp3',
+  AAC: 'audio/aac',
   WAV: 'audio/wav',
   WAV_Chrome: 'audio/x-wav',
   MP4: 'audio/mp4',
