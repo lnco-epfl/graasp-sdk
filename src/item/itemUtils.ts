@@ -1,5 +1,6 @@
 import { DiscriminatedItem } from './item.js';
 
+const UUID_LENGTH = 36;
 /**
  * Returns the item path given an array of ids
  * @param ids consecutive item ids
@@ -35,8 +36,8 @@ export function getParentFromPath(itemPath: string): string | undefined {
  * @returns children ids
  */
 export function getChildFromPath(itemPath: string): string {
-  const ids = getIdsFromPath(itemPath);
-  return ids[ids.length - 1];
+  const id = itemPath.substring(itemPath.length - UUID_LENGTH);
+  return id.replace(/_/g, '-');
 }
 
 /**
