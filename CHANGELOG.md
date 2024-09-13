@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.28.0](https://github.com/graasp/graasp-sdk/compare/v4.27.0...v4.28.0) (2024-09-13)
+
+
+### Features
+
+* improve getChildFromPath time complexity ([#650](https://github.com/graasp/graasp-sdk/issues/650)) ([aefec10](https://github.com/graasp/graasp-sdk/commit/aefec10bbc3990e35355088058a605ffa99d1ac8))
+* update the new ZIP max size ([#647](https://github.com/graasp/graasp-sdk/issues/647)) ([ca205df](https://github.com/graasp/graasp-sdk/commit/ca205dfa788b68a9016ccfe578a7b324df14c830))
+
 ## [4.27.0](https://github.com/graasp/graasp-sdk/compare/v4.26.0...v4.27.0) (2024-09-11)
 
 
