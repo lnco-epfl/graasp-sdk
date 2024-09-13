@@ -69,10 +69,34 @@ describe('Item Utils', () => {
 
   describe('getChildFromPath', () => {
     it('extract child id', () => {
+      const ancestor = v4();
       const parent = v4();
       const child = v4();
+      expect(getChildFromPath(buildPathFromIds(ancestor, parent, child))).toBe(
+        child,
+      );
       expect(getChildFromPath(buildPathFromIds(parent, child))).toBe(child);
       expect(getChildFromPath(buildPathFromIds(child))).toBe(child);
+    });
+    it('check execution time', () => {
+      const times = [];
+
+      for (let i = 0; i < 100; i++) {
+        const ids = Array.from({ length: 10000 }, () => v4());
+        const lastId = ids[ids.length - 1];
+        const path = buildPathFromIds(...ids);
+
+        const start = Date.now();
+        const fetchedId = getChildFromPath(path);
+        const end = Date.now();
+        times.push(end - start);
+        expect(fetchedId).toBe(lastId);
+      }
+
+      // Check median time
+      times.sort((a, b) => a - b);
+      const median = times[Math.floor(times.length / 2)];
+      expect(median).toBeLessThan(3);
     });
   });
 
