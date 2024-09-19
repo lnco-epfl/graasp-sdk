@@ -135,11 +135,6 @@ export * from './item/appItem/appItem.factory.js';
 export * from './item/documentItem/documentItem.js';
 export * from './item/documentItem/documentItem.factory.js';
 /**
- * Etherpad Item
- */
-export * from './item/etherpadItem/etherpadItem.js';
-export * from './item/etherpadItem/etherpadItem.factory.js';
-/**
  * File Item
  */
 export * from './item/fileItem/fileItem.js';
@@ -149,11 +144,6 @@ export * from './item/fileItem/fileItem.factory.js';
  */
 export * from './item/folderItem/folderItem.js';
 export * from './item/folderItem/folderItem.factory.js';
-/**
- * H5P Item
- */
-export * from './item/h5pItem/h5pItem.js';
-export * from './item/h5pItem/h5pItem.factory.js';
 /**
  * Link Item
  */

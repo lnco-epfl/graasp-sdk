@@ -8,7 +8,5 @@ export const ItemType = {
   LOCAL_FILE: 'file',
   S3_FILE: 's3File',
   SHORTCUT: 'shortcut',
-  H5P: 'h5p',
-  ETHERPAD: 'etherpad',
 } as const;
 export type ItemTypeUnion = UnionOfConst<typeof ItemType>;
