@@ -25,6 +25,8 @@ export * from './categories/category.js';
  * Tag
  */
 export * from './tag/tag.js';
+export * from './tag/constraints.js';
+export * from './tag/factory.js';
 
 /**
  * Constants
