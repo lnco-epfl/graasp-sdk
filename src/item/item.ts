@@ -1,6 +1,5 @@
 import { AppItemType } from './appItem/appItem.js';
 import { DocumentItemType } from './documentItem/documentItem.js';
-import { EtherpadItemType } from './etherpadItem/etherpadItem.js';
 import {
   LocalFileItemType,
   S3FileItemType,
@@ -8,7 +7,6 @@ import {
   getS3FileExtra,
 } from './fileItem/fileItem.js';
 import { FolderItemType } from './folderItem/folderItem.js';
-import { H5PItemType } from './h5pItem/h5pItem.js';
 import { ItemSettings } from './itemSettings.js';
 import { ItemType } from './itemType.js';
 import { LinkItemType } from './linkItem/linkItem.js';
@@ -30,9 +28,7 @@ export type DiscriminatedItem<S = ItemSettings> =
   | AppItemType<S>
   | DocumentItemType<S>
   | FolderItemType<S>
-  | H5PItemType<S>
   | LinkItemType<S>
   | LocalFileItemType
   | S3FileItemType
   | ShortcutItemType<S>
-  | EtherpadItemType<S>;
