@@ -92,11 +92,6 @@ export { ActionTriggers } from './enums/triggers.js';
 export { ErrorFactory, isError } from './errors/errors.js';
 
 /**
- * Etherpad
- */
-export type { Etherpad } from './etherpad/etherpad.js';
-
-/**
  * File Size formatting utils
  */
 export { formatFileSize } from './file/fileSize.js';
