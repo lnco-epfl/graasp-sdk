@@ -69,6 +69,13 @@ export type AppSetting<T extends Data = Data> = {
   updatedAt: string;
 };
 
+export type ScreenCalibration = {
+  /** Scale multiplier provided by the host environment. */
+  scale?: number;
+  /** Font size preset provided by the host environment. */
+  fontSize?: 'small' | 'normal' | 'large' | 'extra-large';
+};
+
 export type LocalContext = {
   accountId?: UUID;
   /** @deprecated use accountId */
@@ -81,6 +88,8 @@ export type LocalContext = {
   mobile?: boolean;
   offline?: boolean;
   permission: PermissionLevel;
+  /** Optional host-provided screen calibration settings. */
+  screenCalibration?: ScreenCalibration;
   settings?: unknown;
   standalone?: boolean;
 };

@@ -2,10 +2,8 @@ import { describe, expect, it } from 'vitest';
 
 import { AppItemExtra } from './appItem/appItem.js';
 import { DocumentItemExtra } from './documentItem/documentItem.js';
-import { EtherpadItemExtra } from './etherpadItem/etherpadItem.js';
 import { LocalFileItemExtra, S3FileItemExtra } from './fileItem/fileItem.js';
 import { FolderItemExtra } from './folderItem/folderItem.js';
-import { H5PItemExtra } from './h5pItem/h5pItem.js';
 import { getMimetype } from './item.js';
 import { ItemType } from './itemType.js';
 import { LinkItemExtra } from './linkItem/linkItem.js';
@@ -26,12 +24,6 @@ describe('Extra Utils', () => {
       expect(
         getMimetype({ [ItemType.DOCUMENT]: {} } as DocumentItemExtra),
       ).toEqual(undefined);
-      expect(
-        getMimetype({ [ItemType.ETHERPAD]: {} } as EtherpadItemExtra),
-      ).toEqual(undefined);
-      expect(getMimetype({ [ItemType.H5P]: {} } as H5PItemExtra)).toEqual(
-        undefined,
-      );
       expect(getMimetype({ [ItemType.LINK]: {} } as LinkItemExtra)).toEqual(
         undefined,
       );

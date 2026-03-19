@@ -1,5 +1,11 @@
 # Changelog
 
+## [Unreleased]
+
+### Features
+
+* add optional `screenCalibration` in `LocalContext`
+
 ## [5.5.0](https://github.com/graasp/graasp-sdk/compare/v5.4.0...v5.5.0) (2024-12-12)
 
 
