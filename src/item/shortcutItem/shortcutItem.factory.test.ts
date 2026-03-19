@@ -9,7 +9,7 @@ describe('ShortcutItemFactory', () => {
     const item2 = ShortcutItemFactory();
     expect(item1).not.toEqual(item2);
   });
-  it('Create etherpad item', () => {
+  it('Create shortcut item', () => {
     const item = ShortcutItemFactory();
     expect(item.extra.shortcut.target.length).toBeGreaterThan(3);
     expect(item.type).toEqual(ItemType.SHORTCUT);
